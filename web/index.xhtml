@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <h:head>
+        <title>Pagina de inicio de sisión y registro</title>
+        <link rel="stylesheet" href="estilos/estiloIndex.css"/>
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+              integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" 
+              crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    </h:head>
+    <h:body>
+        <!--<p:messages id="messages" showDetail="true" closable="true" globalOnly="true">
+                <p:autoUpdate/>
+            </p:messages>-->
+        <p:growl id="growl" showDetail="true" sticky="true" life="3000" />  
+       
+        <h:form>  
+            <div id="dialogoRegistro">
+                <p:dialog header="Registrar" widgetVar="dialogoRegistro" id="idDialogo">
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Imagen"/>
+                        <p:inputText/>
+                        <p:commandButton value="Buscar Imagen"/>
+                        <p:column/>
+                        <p:outputLabel value="Nombre y apellido"/>
+                        <p:inputText/>
+
+                        <p:outputLabel value="Correo"/>
+                        <p:inputText/>
+
+                        <p:outputLabel value="Contraseña"/>
+                        <p:inputText/>
+
+                        <p:outputLabel value="Repite la contraseña"/>
+                        <p:inputText placeholder="Repita la contraseña"/>
+                        <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('dialogoRegistro').hide();"/>
+                        <p:commandButton value="Registrar"/>
+                    </h:panelGrid>         
+                </p:dialog> 
+            </div>
+        </h:form>
+
+        <h:form>
+            <!--<p:staticMessage severity="info" summary="INFO!" detail="Falta datos" />-->
+
+            <!--<p:growl id="growl" showDetail="true" sticky="true" />-->
+
+           
+
+            <div id="divImagenLogin">
+
+                <img src="./vistas/ulises.jpg" alt="imagen de ulises fitnes"/>
+            </div> 
+
+            <div id="formularioDeSesion">
+                <!--<p:messages showDetail="true" closable="true"/>-->
+                <h:outputText value="Inicio de sesion"/>
+                <h:panelGrid columns="2" style="margin: 20px auto;" id="panel">                                             
+
+                    <p:inputText required="true" value="#{beans.usuario.email}" requiredMessage="Usuario requerido"
+                                 placeholder="Nombre de usuario" id="lblUsuario"/>
+                    <p:message for="lblUsuario"/>
+
+                    <p:password required="true" value="#{beans.usuario.contrasenna}" requiredMessage="Contraseña requerido" 
+                                placeholder="Contrseña" id="lblContraseña" />
+                    <p:message for="lblContraseña"/>
+
+                    <p:selectOneMenu>
+                        <f:selectItem  itemLabel="Usuario" itemValue="estudiante"/>
+                        <f:selectItem  itemLabel="Administrador" itemValue="administrador"/>
+                    </p:selectOneMenu>
+
+                    <p:column/>
+
+                    <p:commandButton  value="Ingresar" action="#{beans.inicioSesio()}" update="growl"/>     
+
+                </h:panelGrid>
+                <p>No tienes cuenta? <p:commandLink 
+                        value="Registrate aquí" immediate="true" 
+                        oncomplete="PF('dialogoRegistro').show();"/></p>
+                <br></br>   
+                <!--<h:link outcome="welcomePrimefaces" value="Primefaces welcome page"/>-->
+            </div>
+
+
+        </h:form>
+
+
+        <h5>Hora actual del servidor: #{beans.horaServidor()}</h5>
+
+        <div id="bottom">
+            <h:form>     
+
+
+                <ul>     
+                    <h6 style="font-size: 15px; margin-top: 2px; margin-bottom: 3px;">Usted no se ha identificado</h6>
+                    <p:commandLink value="Ir pagina principal" action="/vistas/vistaInicio" style="font-size: 15px;"/> 
+                    <a href="#"><li><i class="fa fa-linkedin-square" aria-hidden="true"></i></li></a>   
+                    <a href="#"><li><i class="fa fa-whatsapp" aria-hidden="true"></i></li></a>
+                    <a href="#"><li><i class="fa fa-gitlab" aria-hidden="true"></i></li></a>
+                </ul>           
+            </h:form>
+        </div>
+
+
+
+
+
+
+    </h:body>
+</html>
+
