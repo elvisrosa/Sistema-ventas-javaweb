@@ -85,7 +85,9 @@
                                 <p:commandButton value="Img" immediate="true" oncomplete="PF('wgbCambiarImagen').show();" style="height: 45px;  width: 50px; border-radius: 45%;"/>
                                 <p:menuButton value="#nombre de usuario">
                                     <p:menuitem value="Editar Perfil" oncomplete="PF('wdgVar').show();" immediate="true" update="messages" icon="pi pi-save" />
-                                    <p:menuitem value="Cerrar sesión" action="#{beans.cerrarSesion()}" ajax="true" icon="pi pi-times" />
+                                    <p:menuitem value="Cerrar sesión" action="#{beans.cerrarSesion()}" icon="pi pi-times" />
+                                     <p:menuitem value="Cerrar sesión" action="/faces/index"/>
+                                     <p:menuitem value="vista no disponible" action="/vistas/noDisponible"/>
                                 </p:menuButton>
                             </f:facet>
 
@@ -146,7 +148,7 @@
                 <ul>                        
                     <li style="display: inline;">Usted se ha identificado: #{beans.usuario.email}</li>
                     <li><p:commandLink value="Ir pagina principal"/></li>
-                    <li><p:commandLink value="Cerrar sesion"/></li>
+                    <li><p:commandLink value="Cerrar sesion" action="#{beans.cerrarSesion()}"/></li>
                     <li style="display: inline;">Todo los derechos reservador por mi EARM</li>      
                     <a href="#"><li><i class="fa fa-linkedin-square" aria-hidden="true"></i></li></a>   
                     <a href="#"><li><i class="fa fa-whatsapp" aria-hidden="true"></i></li></a>

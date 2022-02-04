@@ -1,7 +1,9 @@
 package benas;
 
 import entidades.Usuario;
+import java.io.IOException;
 import java.io.Serializable;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -10,17 +12,19 @@ import javax.inject.Named;
 @ViewScoped
 
 public class plantilla implements Serializable {
-    
 
     public void verificarSesion() {
         try {
-          
-            Usuario u =  (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-            if(u==null){
-                FacesContext.getCurrentInstance().getExternalContext().redirect("./../noDisponible");  //vistas/noDisponible
+
+            Usuario u = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+            ExternalContext ex = FacesContext.getCurrentInstance()
+                    .getExternalContext();
+            if (u == null) {
+
+                ex.redirect(ex.getRequestContextPath() + "/faces/vistas/noDisponible.xhtml");  //vistas/noDisponible
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
         }
     }
 
