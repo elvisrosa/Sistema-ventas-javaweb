@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/02/2022 06:54:56 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades_database.Producto" table="producto" schema="public" optimistic-lock="version">
+        <id name="productoid" type="int">
+            <column name="productoid" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" />
+        </property>
+        <property name="precio" type="java.lang.Double">
+            <column name="precio" precision="17" scale="17" />
+        </property>
+        <property name="stock" type="java.lang.Integer">
+            <column name="stock" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="50" />
+        </property>
+        <set name="detalleventas" table="detalleventa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="productoid" />
+            </key>
+            <one-to-many class="entidades_database.Detalleventa" />
+        </set>
+        <set name="ventas" table="venta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="productoid" />
+            </key>
+            <one-to-many class="entidades_database.Venta" />
+        </set>
+    </class>
+</hibernate-mapping>

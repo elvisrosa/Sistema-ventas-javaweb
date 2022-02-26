@@ -1,0 +1,193 @@
+
+#dialogoRegistro{
+    align-items: center;
+    font-size: 15px;
+}
+/*
+#formularioDeSesion{
+    background-color: rgb(240, 243, 244); 
+    font-size: 15px;
+    margin: auto; 
+    margin-top: 0px; 
+    width: 500px; 
+    border-style: ridge; 
+    border-width: 1px;
+    border-color: rgb(213, 215, 215);
+    border-radius: 0 0 3% 3%;
+}
+#formularioDeSesion h2{
+    text-align: center; 
+    color: black;
+}
+#formularioDeSesion p{
+    text-align: center;
+}
+#bottom{
+    position: fixed;
+    bottom: 0; 
+    width: 100%; 
+    background-color:rgb(205, 240, 246); 
+    height: 65px;
+}
+#bottom ul{
+    list-style: none;
+}
+#bottom li{
+    display: inline; 
+    margin-left: 100px;
+}
+#seccionPaginaP li{
+   font-size: 20px;
+    
+}
+#divImagenLogin{
+    margin: auto; 
+    margin-top: 20px; 
+    width: 500px; 
+    border-style: ridge; 
+    border-width: 1px;
+    border-color: rgb(213, 215, 215);
+    height: 200px;
+    border-radius: 3% 3% 0 0;
+       
+}
+#divImagenLogin img{
+    height: 160px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 10px;
+    border-radius: 5%;
+}
+*/
+
+#fondoPag{
+  justify-content: center;
+  align-items: center;
+  background: #000000 url(".././img/imgFondo.jpg" ) no-repeat fixed 50% 50%;
+  
+}
+
+#header{
+    background: #1A1D1F none no-repeat scroll 0 0;
+    height: 60px;
+    -webkit-box-shadow: 0px 0px 50px 5px #000000; 
+    box-shadow: 0px 0px 50px 5px #000000;
+}
+
+#main1{
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: #ffffff;
+    font-weight: normal;
+    text-decoration: none;
+    font-variant: normal;
+    text-transform: uppercase;
+}
+
+#main2{ 
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 60px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: #2EE1FF;
+    font-weight: 700;
+    text-decoration:  overline  solid #FFFFFF ;
+    font-style: italic;
+    font-variant: normal;
+    text-transform: uppercase;
+}
+
+
+#main3{
+
+    font-family:  Tahoma, Geneva, sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    word-spacing: 0px;
+    line-height : 20px;
+    color: #ffffff;
+    font-weight: normal;
+    width: 400px;
+    text-align: left;
+    transform: translateX(99px) translatey(-30px);
+}
+
+#logo{ 
+    height:10%;
+    width:14%;
+    position: absolute;
+    top:10px;
+    left:45px;
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: inherit;
+    image-rendering: initial;
+    image-rendering: unset;
+}
+#menu{
+    position: absolute;
+    top:15px;
+    right: 45px;
+}
+#contenedorMenu{
+    border: 8px #ffffff;
+}
+
+.boton{
+    border: none;
+    border-right: 2px solid #000000; 
+    background: none;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 15px;
+    letter-spacing: 0px;
+    word-spacing: 0px;
+    color: #ffffff;
+    font-weight: 400;
+    text-decoration: none solid rgb(68, 68, 68);
+    height: 42px;
+    width: 100px;
+}
+.boton:hover{  
+    border-bottom: 3px solid #EB3C0E;
+    font-family: Tahoma, Geneva, sans-serif;
+    color: #EB3C0E;
+}
+
+#centro{
+    background: #000000 url("./../img/imgFondo2.jpg" ) no-repeat fixed 50% 100%;
+    width: 1000px;
+    height: 400px;
+    line-height : 10px;
+    text-align: center;
+    border: 1px solid #000000;
+    margin: 0 auto;
+    -webkit-box-shadow: 0px 0px 50px 5px #000000; 
+    box-shadow: 0px 0px 50px 5px #000000;
+    transform: translateY(15%);
+}
+
+#btnInicio{
+    background: #2EE1FF;
+    outline: 1px solid #ffffff;
+    outline-offset: 10px;
+    border: 0px solid #1C6EA4;
+    border-radius: 5px 0px 5px 0px;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #FFFFFF;
+    width: 220px;
+    height: 38px;
+    transform: translateY(90px);
+}
+#btnInicio:hover{
+    background: #ffffff;
+    outline: 1px solid #2EE1FF;
+    color: #000000;
+}
+
+
