@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <h:head>
+        <title>Pagina de inicio de sisión y registro</title>
+        <link rel="stylesheet" href="estilos_css/estiloIndex.css"/>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+              integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" 
+              crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    </h:head>
+    <h:body id="fondoPag">
+        <!--<p:messages id="messages" showDetail="true" closable="true" globalOnly="true">
+                <p:autoUpdate/>
+            </p:messages>-->
+        <p:growl id="growl" showDetail="true" sticky="true" life="3000" />  
+        
+        <h:form>
+            <div id="divInicioSesion">
+                <p:dialog header="Inicio de sesión" widgetVar="wgbInicioSesion" id="idInicioSesion" modal="true" resizable="false" showEffect="explode"
+                          hideEffect="explode" minWidth="500">
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Correo" for="txtCorreo"/>
+                        <p:inputText id="txtCorreo" placeholder="Ususrio o correo" value="#{bean_usuario.usuario.email}" required="true"
+                                     requiredMessage="Campo vacio"/>
+                        <p:outputLabel value="Contraseña" for='psw'/>
+                        <p:password id="psw" placeholder="************" value="#{bean_usuario.usuario.contrasenna}" required="true"
+                                    requiredMessage="Campo requerido"/>
+                        <h:commandButton value="Inicar sesión" action="#{bean_usuario.iniciarSesion()}"/>
+                        <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wgbInicioSesion').hide();"/>
+                    </h:panelGrid>
+                </p:dialog>
+            </div>
+        </h:form>
+        
+        
+        
+        <h:form>  
+            <div id="dialogoRegistro">
+                <p:dialog header="Registrar" widgetVar="dialogoRegistro" id="idDialogo" modal="true">
+                    <h:panelGrid columns="2">
+
+                        <p:outputLabel value="Cedula"/>
+                        <p:inputText value="#{bean_usuario.usuario.cedula}"/>
+                        <p:outputLabel value="Nombre"/>
+                        <p:inputText value="#{bean_usuario.usuario.nombre}"/>
+                        <p:outputLabel value="Apellido"/>
+                        <p:inputText value="#{bean_usuario.usuario.apellido}"/>
+                        <p:outputLabel value="Correo"/>
+                        <p:inputText value="#{bean_usuario.usuario.email}"/>
+                        <p:outputLabel value="Telefono"/>
+
+                        <p:inputText value="#{bean_usuario.usuario.telefono}"/>
+                        <p:outputLabel value="Contraseña" for="pw1"/>
+                        <p:password id="pw1" value="#{bean_usuario.usuario.contrasenna}" match="pw2" feedback="true" strongLabel="Muy buena" />
+
+                        <p:outputLabel value="Repite la contraseña" for="pw2"/>
+                        <p:password id="pw2" placeholder="Repita la contraseña" required="true"/>
+
+                        <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('dialogoRegistro').hide()"/>
+                        <h:commandButton value="Registrar" action="#{bean_usuario.crearUsuario()}"/>
+                    </h:panelGrid>         
+                </p:dialog> 
+            </div>
+        </h:form>
+
+       
+            <!--<p:staticMessage severity="info" summary="INFO!" detail="Falta datos" />-->
+
+            <!--<p:growl id="growl" showDetail="true" sticky="true" />-->
+
+    
+        <div id="header" >           
+
+            <img id="logo" src="./img/logo.png"/>
+            <div id="menu">
+                <h:form >
+                    <h:panelGrid id="contenedorMenu"  columns="4" >
+                        <button  class="boton" >opción1</button>
+                        <button  class="boton" >opcion2</button>
+                        <button  class="boton" >opcion3</button>
+                        <button  class="boton" >opcion4</button>
+                    </h:panelGrid>
+                </h:form>
+            </div >
+        </div>
+        <hr/>
+        <div id="centro">
+            <p id="main1">
+                no pain no game
+            </p>
+            <p id="main2">
+                contruye tu cuerpo<br/>
+            </p>
+            <p id="main3">
+                Es hora de cambiar tu vida, no esperes más, empieza desde poco y llega más alto...
+            </p>
+            <h:form><p:commandButton id="btnInicio" value="Iniciar" oncomplete="PF('wgbInicioSesion').show()"/>
+                <br></br>
+                <br></br>
+                <br></br>
+                <p:outputLabel value="No tienes cuenta?" style="color:white;"/><p:commandLink value="Registrate aquí" oncomplete="PF('dialogoRegistro').show()"/>
+            </h:form>             
+        </div>  
+        </h:body>
+
+
+
+</html>
+

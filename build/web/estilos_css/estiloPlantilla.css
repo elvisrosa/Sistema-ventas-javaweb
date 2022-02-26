@@ -1,0 +1,254 @@
+*{
+    padding: 0;  
+    top: 0;
+    margin: 0px 0px 0px 0px;
+    
+}
+
+#top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: 0px 0px 0px 0px;
+    text-transform: uppercase;
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 100;
+    background: #1A1D1F none no-repeat scroll 0 0;     
+}
+
+.nav-icono{
+    font-size: 25px;
+    font-weight: bold;
+    padding: 0 40px;
+    line-height: 75px;
+}
+
+.logo{
+    height:70px;
+    width:160px;
+    position: absolute;
+    top:5px;
+    left:30px;
+}
+
+#bottom {
+    position: relative;
+    background-color: #c2dfef;
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+}
+
+#left {
+    margin: 75px 0px 0px 0px;
+    margin-left: 0;
+    float: left;
+    width: 300px;
+    height: 625px;
+    background-color: red;
+    position: fixed;
+    z-index: 100;
+
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+#content{    
+    background-color: #dddddd;
+    margin: 75px 0px 0px 300px;
+    width: 1035px;
+    height: 100%;
+    display: flex;
+    position: relative;
+    padding: 20px;
+}
+
+.center_content {
+    position: relative;
+    background-color: #dddddd;
+
+}
+
+#top a:link, #top a:visited {
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+.bar-lst{
+    display: flex;
+    list-style: none;
+    margin-right: 160px;        
+}
+.bar-nombre-usuario{
+    float: right;
+    line-height: 75px;
+    margin-left: 25px;
+    font-size: 15px;
+    color: #c2dfef;
+
+}
+
+/*.bar-img-usuario img{
+    border-radius: 50%;
+    height: 55px;
+    width:  55px;
+    margin: 10px 0px 10px 15px;
+    line-height: 75px;
+}
+
+*/
+
+.bar-lst li{
+    font-size: 20px;
+    margin: 0 15px;
+    line-height: 75px;
+    text-transform: uppercase;  
+    width: max-content;   
+    border-radius: 3px;
+}
+.bar-lst li:hover{
+    background-color: #034574;
+    transition: 0.5s;
+}
+
+.header{
+    background: #1A1D1F none no-repeat scroll 0 0;
+    color: red;
+    height: 60px;
+    -webkit-box-shadow: 0px 0px 50px 5px #000000; 
+    box-shadow: 0px 0px 50px 5px #000000;
+}
+
+#imgPerfil{
+    height:43px;
+    width:43px;
+    transform: translateX(40px) translatey(16px);
+}
+
+
+#iconoPerfil{
+    height:17px;
+    width:17px;
+    transform: translatey(2px);
+}
+
+#iconoCerrarSesion{
+    height:17px;
+    width:17px;
+    transform: translatey(2px);
+}
+
+#menuPrincipal{
+    position: absolute;
+    top:15px;
+    right:160px;
+}
+
+.boton{
+    border: none;
+    border-right: 2px solid #000000; 
+    background: none;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 15px;
+    letter-spacing: 0px;
+    word-spacing: 0px;
+    color: #ffffff;
+    font-weight: 400;
+    text-decoration: none solid rgb(68, 68, 68);
+    height: 42px;
+    width: 100px;
+}
+.boton:hover{
+    border-bottom: 3px solid #EB3C0E;
+    font-family: Tahoma, Geneva, sans-serif;
+    color: #EB3C0E;
+}
+
+ul{
+  list-style: none;
+}
+
+#menuPerfil{
+    position: absolute;
+    top:40px;
+    right:1px;
+    transform: translatey(-23px);
+    background: #1A1D1F;
+    width: 150px;
+    height: 45px;
+}
+
+
+#menuPerfil:hover{
+    height: 280px;
+}
+
+#menu li>a{
+  background: none;
+  color: white;
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+  width: 100px;
+}
+
+#menu li>.a1:hover{
+  background: #1A1D1F;
+  color: #EB3C0E;
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+  width: 100px;
+}
+
+#menu>li{
+  float: left;
+  text-align:left;
+  position: absolute;
+  top:0px;
+  right:0px;
+  transform: translateX(-15px) translatey(-25px);
+  word-spacing: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+
+#liIconoCerrarSesion{
+    word-spacing: 0px;
+}
+
+#menu>li>ul{
+  display: none;
+}
+
+
+#menu>li:hover>ul {
+  display:block;
+  background:none;
+  color: white;
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+  width: 100px;
+}
+
+
+
+
+
+
+
