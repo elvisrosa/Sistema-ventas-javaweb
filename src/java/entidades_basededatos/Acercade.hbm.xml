@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 31/08/2022 20:07:16 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades_basededatos.Acercade" table="acercade" schema="public" optimistic-lock="version">
+        <comment>Datos acerca de la empresa</comment>
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="sequence">
+                <param name="sequence">acerca_seq</param>
+            </generator>
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="10" />
+        </property>
+        <property name="ubicacion" type="string">
+            <column name="ubicacion" length="50" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="250" />
+        </property>
+    </class>
+</hibernate-mapping>

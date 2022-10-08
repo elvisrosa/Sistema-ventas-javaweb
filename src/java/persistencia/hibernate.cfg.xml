@@ -41,13 +41,17 @@ Contributor(s):
 -->
 <hibernate-configuration>
   <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/ThitanGym</property>
-    <property name="hibernate.connection.username">prueba</property>
-    <property name="hibernate.connection.password">123456789</property>
-    
-    <mapping resource="entidades_database/Usuario.hbm.xml"/>
-    
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/VENTASGYM</property>
+    <property name="hibernate.connection.username">postgres</property>
+    <property name="hibernate.connection.password">123456</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.show_sql">true</property>
+    <mapping resource="entidades_basededatos/Detalleventa.hbm.xml"/>
+    <mapping resource="entidades_basededatos/Usuario.hbm.xml"/>
+    <mapping resource="entidades_basededatos/Acercade.hbm.xml"/>
+    <mapping resource="entidades_basededatos/Producto.hbm.xml"/>
+    <mapping resource="entidades_basededatos/Venta.hbm.xml"/>
+    <mapping resource="entidades_basededatos/Categoria.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

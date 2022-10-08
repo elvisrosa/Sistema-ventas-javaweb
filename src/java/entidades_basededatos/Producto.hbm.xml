@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 31/08/2022 20:07:16 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades_basededatos.Producto" table="producto" schema="public" optimistic-lock="version">
+        <id name="productoid" type="int">
+            <column name="productoid" />
+            <generator class="sequence">
+                <param name="sequence">producto_productoid_seq</param>
+            </generator>
+
+        </id>
+        <many-to-one name="categoria" class="entidades_basededatos.Categoria" fetch="select">
+            <column name="codigocategoria" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" />
+        </property>
+        <property name="precio" type="java.lang.Double">
+            <column name="precio" precision="17" scale="17" />
+        </property>
+        <property name="stock" type="java.lang.Integer">
+            <column name="stock" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="100" />
+        </property>
+        <property name="imagen" type="binary">
+            <column name="imagen" />
+        </property>
+        <property name="nombrefoto" type="string">
+            <column name="nombrefoto" length="20" />
+        </property>
+        <set name="ventas" table="venta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="productoid" />
+            </key>
+            <one-to-many class="entidades_basededatos.Venta" />
+        </set>
+    </class>
+</hibernate-mapping>

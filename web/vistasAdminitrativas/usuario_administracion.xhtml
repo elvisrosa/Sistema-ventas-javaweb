@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../recursos_css_plantilla/plantillaAdministrativa.xhtml">
+
+            <ui:define name="content">
+
+
+                <!--
+                <f:view>
+                    <h:form id="frmlista">
+                        <h3 style="text-align:center;">Lista de usuarios registrados en el sistema</h3>
+                        <p:dataTable value="# {bean_usuario.lstUsuario}" var="us" paginator="true"
+                                     paginatorPosition="top"
+                                     emptyMessage="No hay datos de usuario"                                 
+                                     widgetVar="dlgDataTable"
+                                     filteredValue="# {bean_usuario.lstFilterUsuario}">
+
+                            <f:facet name="header">
+                                <p:panel>
+                                    <h:outputLabel value="Buscar"/>
+                                    <p:inputText id="globalFilter" onkeyup="PF('dlgDataTable').filter()"
+                                                 style="width: 150px;" placeholder="Buscar"/>
+                                </p:panel>
+
+                            </f:facet>
+
+                            <p:column headerText="Id" filterBy="# {us.idusuario}">
+                                <h:outputText value="# {us.idusuario}"/>
+                            </p:column>
+
+                            <p:column headerText="Cedula" filterBy="# {us.cedula}">
+                                <h:outputText value="# {us.cedula}"/>
+                            </p:column>
+
+                            <p:column headerText="Nombre" sortBy="# {us.nombre}" filterBy="# {us.nombre}">
+                                <h:outputText value="# {us.nombre}"/>
+                            </p:column>
+
+                            <p:column headerText="Apellido"  filterBy="# {us.apellido}">
+                                <h:outputText value="# {us.apellido}"/>
+                            </p:column>
+
+                            <p:column headerText="Email">
+                                <h:outputText value="# {us.email}" />
+                            </p:column>
+
+                            <p:column headerText="Teléfono">
+                                <h:outputText value="# {us.telefono}"/>
+                            </p:column>
+
+                            <p:column headerText="Tipo de usuario">
+                                <h:outputText value="# {us.tipousuario}"/>
+                            </p:column>
+
+                            <p:column headerText="Imagen">
+                                <h:outputText value="# {us.imagen}"/>
+                            </p:column>
+
+                            <p:column headerText="Acciones">  
+                                <p:growl showDetail="true" id="grwleditar"/>
+                                <p:commandButton value="Editar" oncomplete="PF('dlgModificar').show()" update=":frmEditar"> 
+                                    <f:setPropertyActionListener target="# {bean_usuario.usuario}" value="# {us}"/>
+                                </p:commandButton>
+
+                            </p:column>    
+
+                            <p:column headerText="Eliminar">  
+                                <p:growl showDetail="true" id="growleliminar"/>
+                                <p:commandButton value="eliminar" oncomplete="PF('dlgElliminar').show()" update=":frmEliminar"> 
+                                    <f:setPropertyActionListener target="# {bean_usuario.usuario}" value="# {us}"/>
+                                </p:commandButton>
+                            </p:column>
+
+                            <p:column headerText="Foto Usuario">
+                                <p:commandButton  value="Ver">
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </f:view>
+
+                
+                
+                
+                -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <h:form id="form">  
+                    <p:dataGrid var="car" value="#{bean_usuario.lstUsuario}" layout="grid"
+                                rows="5" paginator="true" id="cars"
+                                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
+                                {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                rowsPerPageTemplate="6,12,16">
+
+                        <f:facet name="header">
+                            Usuarios registrados en el sistema
+                        </f:facet>
+
+                        <p:panel header="#{car.cedula}" style="text-align:center">
+                            <h:panelGrid columns="1">
+                               <p:graphicImage name="#{car.nombrefoto}" library="Imagenes_usuario" height="100px;"/>
+
+                                <h:outputText value="#{car.nombre}" />
+
+                                <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" value="Ver detalles">
+                                    <f:setPropertyActionListener value="#{car}" target="#{bean_usuario.usuario}" />
+                                </p:commandButton>
+                            </h:panelGrid>
+                        </p:panel>
+
+                    </p:dataGrid>
+
+                    <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="carDetail" style="text-align:center;">
+
+                            <h:panelGrid  columns="2" rendered="#{not empty bean_usuario.usuario}" columnClasses="label,value">
+
+
+                                <h:outputText value="Id del usuario" />
+                                <h:outputText value="#{bean_usuario.usuario.idusuario}" />
+
+                                <h:outputText value="Apellido" />
+                                <h:outputText value="#{bean_usuario.usuario.apellido}" />
+
+                                <h:outputText value="Email" />
+                                <h:outputText value="#{bean_usuario.usuario.email}" />
+
+                                <h:outputText value="Telefono" />
+                                <h:outputText value="#{bean_usuario.usuario.telefono}" />
+                                
+                                <p:commandButton value="Darle de baja" action="#{bean_usuario.eliminarUsuario()}" update=":form"/>
+                                <p:commandButton value="Cancelar" oncomplete="PF('carDialog').hide()"/>
+
+
+
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+                </h:form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!--
+                
+                                <p:dialog widgetVar="dlgElliminar" header="Eliminar usuario" showEffect="Explode"
+                                          hideEffect="explode" modal="true" resizable="true"
+                                          minWidth="200">
+                
+                                    <h:form id="frmEliminar">
+                                        <p:outputLabel value="Desea eliminar el usuaro  # {bean_usuario.usuario.nombre}?"/> <br/>
+                                        <h:panelGrid columns="2">
+                                            <p:commandButton value="Si" icon="ui-icon-check" actionListener="# {bean_usuario.eliminarUsuario()}" 
+                                                             oncomplete="PF('dlgElliminar').hide()" update=":frmlista"/>
+                                            <p:commandButton  icon="ui-icon-close" value="No"  oncomplete="PF('dlgElliminar').hide()"/>
+                                        </h:panelGrid>
+                                    </h:form>
+                                </p:dialog>
+                
+                
+                
+                                <p:dialog id="dlgEditar" header="Editar usuario: # {bean_usuario.usuario.nombre}" showEffect="explode"
+                                          hideEffect="explode" widgetVar="dlgModificar" modal="true" resizable="false"
+                                          minWidth="200">
+                                    <h:form id="frmEditar">
+                                        <h:panelGrid columns="1">
+                                            <p:inputText value="# {bean_usuario.usuario.nombre}"/>
+                                            <p:inputText  value="# {bean_usuario.usuario.apellido}"/> 
+                                            <p:inputText  value="# {bean_usuario.usuario.email}"/> 
+                                            <p:inputText  value="# {bean_usuario.usuario.telefono}"/> 
+                                            <p:inputText  value="# {bean_usuario.usuario.tipousuario}"/> 
+                                            <p:inputText  value="# {bean_usuario.usuario.cedula}"/> 
+                                        </h:panelGrid>
+                
+                                        <h:panelGrid columns="2">
+                                            <p:commandButton actionListener="# {bean_usuario.editarUsuario()}" value="Registrar cambios" 
+                                                             oncomplete="PF('dlgModificar').hide()" update=":frmlista"/>
+                                            <p:commandButton  value="Cancelar"  immediate="true" oncomplete="PF('dlgModificar').hide()"/>
+                                        </h:panelGrid>
+                
+                                    </h:form>        
+                                </p:dialog>-->
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

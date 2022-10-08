@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../recursos_css_plantilla/plantillaAdministrativa.xhtml">
+
+            <ui:define name="content">
+                <p:panelGrid columns="1">
+                <h:form id="frmDatos">
+                    <h3 style="text-align: center;">Datos de contacto de la empresa</h3>
+                    <h:panelGrid columns="">
+                        <p:outputLabel value="NOmbre de la empresa"/>
+                        <p:inputText value="#{bean_datosEmpresa.empresa.nombre}"/>
+
+                        <p:outputLabel value="Ubicación de la empresa"/>
+                        <p:inputText value="#{bean_datosEmpresa.empresa.ubicacion}"/>
+
+                        <p:outputLabel value="Telefono de la empresa"/>
+                        <p:inputText value="#{bean_datosEmpresa.empresa.telefono}"/>
+
+                        <!--<div class="p-field p-col-12 p-md-4">
+                            <p:outputLabel for="@next" value="Estado actual"/>
+                            <p:selectOneMenu id="trl" dir="rtl" value="# {bean_datosEmpresa.empresa.estado}">
+                                <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                <f:selectItem itemLabel="Abierta las 24 horas" itemValue="uno"/>
+                                <f:selectItem itemLabel="Cerrada por el momento" itemValue="dos"/>
+                            </p:selectOneMenu>
+                        </div>-->
+
+                        <p:outputLabel value="Acerca de la empresa"/>
+                        <p:inputTextarea value="#{bean_datosEmpresa.empresa.descripcion}"/>
+
+                        <p:commandButton value="Agregar datos" actionListener="#{bean_datosEmpresa.guardarDato()}" ajax="false"/>
+                    </h:panelGrid>
+                </h:form>
+
+                    <f:view>
+                        <h:form id="frmLista">
+
+                        <p:dataTable value="#{bean_datosEmpresa.lstEmpresa}" var="con">
+                            <p:column headerText="IdDatosEmpresa"> #{con.id}</p:column>
+                            <p:column headerText="Nombre"> #{con.nombre}</p:column>
+                            <p:column headerText="Direccion"> #{con.ubicacion}</p:column>
+                            <p:column headerText="Telefono"> #{con.telefono}</p:column>
+                            <p:column headerText="Estado"> #{con.descripcion}</p:column>
+
+                           
+                            <p:column headerText="Eliminar">
+                                <p:commandButton value="Eliminar" oncomplete="PF('dlgEliminar').show()">
+                                    <f:setPropertyActionListener target="#{bean_datosEmpresa.empresa}" value="#{con}"/>
+                                </p:commandButton>
+                            </p:column>
+                            
+                             <p:column headerText="Editar">
+                                <p:commandButton value="Editar" oncomplete="PF('dlgModificar').show()" update=":frmEditar"> 
+                                    <f:setPropertyActionListener target="#{bean_datosEmpresa.empresa}" value="#{con}"/>
+                                </p:commandButton>
+                            </p:column>
+
+                        </p:dataTable>
+                        </h:form>
+                    </f:view>
+
+                    <p:dialog widgetVar="dlgEliminar" header="Eliminar usuario" modal="true"
+                              showEffect="Explode" hideEffect="explode" resizable="true" minWidth="200">
+
+                        <h:form id="frmEliminar">
+                            <p:outputLabel value="Desea eliminar los datos sobre la empresa?"/><br></br>  
+                            <h:panelGrid columns="2">
+                                <p:commandButton value="Si" icon="ui-icon-check" action="#{bean_datosEmpresa.eliminarDatos()}"
+                                                 oncomplete="PF('dlgEliminar').hide()" update=":frmLista"/>
+                                <p:commandButton value="No" oncomplete="PF('dlgEliminar').hide()"/>
+                            </h:panelGrid>
+                        </h:form>                    
+                    </p:dialog>
+                
+                
+                 <p:dialog id="dlgEditar" header="Editar datos" showEffect="explode"
+                          hideEffect="explode" widgetVar="dlgModificar" modal="true" resizable="false"
+                          minWidth="200">
+                    <h:form id="frmEditar">
+                        <h:panelGrid columns="1">
+                            <p:inputText value="#{bean_datosEmpresa.empresa.nombre}"/>
+                            <p:inputTextarea  value="#{bean_datosEmpresa.empresa.descripcion}"/> 
+                            <p:inputText  value="#{bean_datosEmpresa.empresa.telefono}"/> 
+                            <p:inputTextarea  value="#{bean_datosEmpresa.empresa.ubicacion}"/>                     
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2">
+                            <p:commandButton actionListener="#{bean_datosEmpresa.editarDatos()}" value="Registrar cambios"  
+                                             oncomplete="PF('dlgModificar').hide()" update=":frmLista"/>
+                            <p:commandButton  value="Cancelar"  immediate="true" oncomplete="PF('dlgModificar').hide()"/>
+                        </h:panelGrid>
+
+                    </h:form>        
+                </p:dialog>
+
+
+
+
+
+                </p:panelGrid>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

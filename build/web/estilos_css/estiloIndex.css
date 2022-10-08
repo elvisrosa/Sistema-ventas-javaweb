@@ -1,71 +1,20 @@
+*{
+    padding: 0;  
+    top: 0;
+       
+}
 
 #dialogoRegistro{
     align-items: center;
     font-size: 15px;
 }
-/*
-#formularioDeSesion{
-    background-color: rgb(240, 243, 244); 
-    font-size: 15px;
-    margin: auto; 
-    margin-top: 0px; 
-    width: 500px; 
-    border-style: ridge; 
-    border-width: 1px;
-    border-color: rgb(213, 215, 215);
-    border-radius: 0 0 3% 3%;
-}
-#formularioDeSesion h2{
-    text-align: center; 
-    color: black;
-}
-#formularioDeSesion p{
-    text-align: center;
-}
-#bottom{
-    position: fixed;
-    bottom: 0; 
-    width: 100%; 
-    background-color:rgb(205, 240, 246); 
-    height: 65px;
-}
-#bottom ul{
-    list-style: none;
-}
-#bottom li{
-    display: inline; 
-    margin-left: 100px;
-}
-#seccionPaginaP li{
-   font-size: 20px;
-    
-}
-#divImagenLogin{
-    margin: auto; 
-    margin-top: 20px; 
-    width: 500px; 
-    border-style: ridge; 
-    border-width: 1px;
-    border-color: rgb(213, 215, 215);
-    height: 200px;
-    border-radius: 3% 3% 0 0;
-       
-}
-#divImagenLogin img{
-    height: 160px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    margin-top: 10px;
-    border-radius: 5%;
-}
-*/
+
 
 #fondoPag{
-  justify-content: center;
-  align-items: center;
-  background: #000000 url(".././img/imgFondo.jpg" ) no-repeat fixed 50% 50%;
-  
+    justify-content: center;
+    align-items: center;
+    background: #000000 url(".././img/imgFondo.jpg" ) no-repeat fixed 50% 50%;
+
 }
 
 #header{
@@ -73,6 +22,9 @@
     height: 60px;
     -webkit-box-shadow: 0px 0px 50px 5px #000000; 
     box-shadow: 0px 0px 50px 5px #000000;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
 }
 
 #main1{
@@ -189,5 +141,125 @@
     outline: 1px solid #2EE1FF;
     color: #000000;
 }
+
+
+
+
+
+
+#Contactos{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background: #1A1D1F none no-repeat scroll 0 0;
+    height: 80px;
+    
+}
+#logosContactos .fa{
+    alignment-adjust: middle;
+    color: #ffffff;
+    width: 30px;
+}
+#logosContactos .fa:hover{
+    color: #EB3C0E;   
+}
+#Siguenos{ 
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    color: #FFFFFF;
+    transform: translateX(60px);
+}
+#logosContactos{
+    transform: translateY(40px) translateX(-30px);
+   
+}
+#conocenos{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    
+}
+.conocenosOpciones{
+    list-style: none;
+}
+
+.conocenosOpciones li>a{
+    color: white;
+    padding: 6px 100px;
+    display: block;
+    text-decoration: none;
+}
+.conocenosOpciones li>a:hover{
+    color: #EB3C0E;
+}
+
+.conocesnoOpcionesPrincipales{
+    color: white;
+    transform: translateX(100px);
+    font-size: 16px;
+    font-weight: 700;
+}
+#Pagos{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background: #282A3A none no-repeat scroll 0 0;
+    height: 80px;
+}
+#logosPagos{
+    
+    transform: translateY(55px) translateX(-30px);
+}
+#logosPagos .fa{
+    alignment-adjust: middle;
+    color: #ffffff;
+    padding: 50px;
+    transform: translateX(-30px)translateY(-50px);
+}
+#formasPago{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    color: #FFFFFF;
+    align-self:center;
+    transform: translateX(295px) translateY(-20px);
+}
+#infFooter{
+    background: #282A3A none no-repeat scroll 0 0;
+    height: 150px;
+}
+#informacion{
+    color: #ffffff;
+    text-align: center;
+    font-size: 15px; 
+    transform: translatey(5px);
+    
+    word-spacing: 2px;
+}
+
+#logoFooter{ 
+    height:6%;
+    width:7%;
+    transform: translateX(585px)translatey(10px);
+}
+
+#footer{
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 100%;;
+}
+
+
+
+
+
+
+
+
+
 
 

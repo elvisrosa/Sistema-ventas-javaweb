@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+            <ui:composition template="./recursos_css_plantilla/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h:form enctype="multipart/form-data">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="Cedula"/>
+                        <p:inputText value="#{bean_usuario.u.cedula}"/>
+                        
+                        <!--<p:graphicImage name="# {bean_usuario.usuario.nombrefoto}" library="Imagenes_usuario" style="width: 100px; height: 100px;"/>-->
+                                               
+                        <p:outputLabel value="Nombre"/>
+                        <p:inputText value="#{bean_usuario.u.nombre}"/>
+                        <p:outputLabel value="Apellido"/>
+                        <p:inputText value="#{bean_usuario.u.apellido}"/>
+                        <p:outputLabel value="Correo"/>
+                        <p:inputText value="#{bean_usuario.u.email}"/>
+                        <p:outputLabel value="Telefono"/>
+
+                        <p:inputText value="#{bean_usuario.u.telefono}"/>
+                        
+                        <p:outputLabel value="Contraseña anterior"/>
+                        <p:inputText value="#{bean_usuario.u.contrasenna}"/>
+                        
+                        <p:outputLabel value="Imagen"/>
+                        <p:fileUpload value="#{bean_usuario.file}" mode="simple"
+                                      allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+
+                         </h:panelGrid>   
+                    <p:commandButton value="Editar" action="#{bean_usuario.editarUsuarioLogueado()}" ajax="false"/>
+                        <p:commandButton value="Cancelar" immediate="true"/>
+                   
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

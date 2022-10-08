@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"     
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
     <h:head>
@@ -18,8 +19,8 @@
         <!--<p:messages id="messages" showDetail="true" closable="true" globalOnly="true">
                 <p:autoUpdate/>
             </p:messages>-->
-        <p:growl id="growl" showDetail="true" sticky="true" life="3000" />  
-        
+        <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+
         <h:form>
             <div id="divInicioSesion">
                 <p:dialog header="Inicio de sesión" widgetVar="wgbInicioSesion" id="idInicioSesion" modal="true" resizable="false" showEffect="explode"
@@ -31,15 +32,19 @@
                         <p:outputLabel value="Contraseña" for='psw'/>
                         <p:password id="psw" placeholder="************" value="#{bean_usuario.usuario.contrasenna}" required="true"
                                     requiredMessage="Campo requerido"/>
-                        <h:commandButton value="Inicar sesión" action="#{bean_usuario.iniciarSesion()}"/>
+
+                        
+                        <p:commandButton value="Inicar sesión" action="#{bean_usuario.iniciarSesion()}" ajax="false" onclick="PF('pbAjax').start();PF('startButton2').disable()" widgetVar="iniciar"
+                                         styleClass="p-mr-2"
+                                         />
                         <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wgbInicioSesion').hide();"/>
                     </h:panelGrid>
                 </p:dialog>
             </div>
         </h:form>
-        
-        
-        
+
+
+
         <h:form>  
             <div id="dialogoRegistro">
                 <p:dialog header="Registrar" widgetVar="dialogoRegistro" id="idDialogo" modal="true">
@@ -63,34 +68,34 @@
                         <p:password id="pw2" placeholder="Repita la contraseña" required="true"/>
 
                         <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('dialogoRegistro').hide()"/>
-                        <h:commandButton value="Registrar" action="#{bean_usuario.crearUsuario()}"/>
+                        <p:commandButton value="Registrar" action="#{bean_usuario.crearUsuario()}" ajax="false"/>
                     </h:panelGrid>         
                 </p:dialog> 
             </div>
         </h:form>
 
-       
-            <!--<p:staticMessage severity="info" summary="INFO!" detail="Falta datos" />-->
 
-            <!--<p:growl id="growl" showDetail="true" sticky="true" />-->
+        <!--<p:staticMessage severity="info" summary="INFO!" detail="Falta datos" />-->
 
-    
+        <!--<p:growl id="growl" showDetail="true" sticky="true" />-->
+
+
         <div id="header" >           
-
             <img id="logo" src="./img/logo.png"/>
             <div id="menu">
                 <h:form >
                     <h:panelGrid id="contenedorMenu"  columns="4" >
-                        <button  class="boton" >opción1</button>
-                        <button  class="boton" >opcion2</button>
-                        <button  class="boton" >opcion3</button>
-                        <button  class="boton" >opcion4</button>
+                        <a href="#logosContactos"  class="boton">Contacto</a>
+                        <a href="#form"  class="boton">Productos</a>
+                        <a href=""  class="boton"><i class="fa fa-cart-plus" aria-hidden="true" style="color: greenyellow; font-size: 25px;"></i></a>
+                        <p:commandButton  class="boton" value="Iniciar" oncomplete="PF('wgbInicioSesion').show()"/>
+                        <p:commandLink class="boton" value="Registrate aquí" oncomplete="PF('dialogoRegistro').show()"/>
                     </h:panelGrid>
                 </h:form>
             </div >
         </div>
         <hr/>
-        <div id="centro">
+        <div id="centro" style="margin-bottom: 150px;">
             <p id="main1">
                 no pain no game
             </p>
@@ -105,9 +110,143 @@
                 <br></br>
                 <br></br>
                 <p:outputLabel value="No tienes cuenta?" style="color:white;"/><p:commandLink value="Registrate aquí" oncomplete="PF('dialogoRegistro').show()"/>
-            </h:form>             
+
+
+
+                <!--<p:commandButton value="Start" type="button"
+                                 onclick="PF('pbAjax').start();PF('startButton2').disable()" widgetVar="startButton2" styleClass="p-mr-2"/>
+                <p:commandButton value="Cancel" action="# {bean_progreso.cancelar()}"
+                                 oncomplete="PF('pbAjax').cancel();PF('startButton2').enable()" styleClass="ui-button-outlined"/>
+
+                <p:progressBar widgetVar="pbAjax" ajax="true" value="# {bean_progreso.progreso1}"
+                               labelTemplate="{value}%" styleClass="p-mt-3" global="false">
+                    <p:ajax event="complete" update="growl"
+                            oncomplete="PF('startButton2').enable()" />
+                </p:progressBar>-->
+            </h:form> 
+
+
         </div>  
-        </h:body>
+
+
+
+
+        <p:contentFlow value="#{bean_productos.lstProducto}" var="image">
+            <span>#{image.precio}</span>
+            <p:graphicImage name="#{image.nombrefoto}" styleClass="content" library="Imagenes_producto"/>   
+        </p:contentFlow>
+
+
+        <h:form id="form">
+            <p:dataGrid var="product" value="#{bean_productos.lstProducto}"  columns="4" layout="grid"
+                        style="background-color: transparent !important;">         
+                <div class="product-grid-item-top">
+                    <div>
+                        <i class="pi pi-tag product-category-icon"/>
+                        <span class="product-category" style="font-style: italic;">#{product.categoria.nombre}</span>
+                    </div>
+
+                </div>
+
+
+                <div class="product-grid-item card" style="margin-bottom: 50px;">
+
+                    <div class="product-grid-item-content" style="text-align: center; margin-bottom: 20px;">
+                        <p:graphicImage library="Imagenes_producto" name="#{product.nombrefoto}"  style="height: 75px;"/>
+                        <div class="product-name">#{product.nombre}</div>
+                    </div>
+
+                    <div class="product-grid-item-bottom">
+                        <h:outputText value="#{product.precio}" styleClass="product-price" style="color: green; font-size: 25px; margin-right: 20px;">
+                            <f:convertNumber currencySymbol="$" type="currency"/>
+                        </h:outputText>
+                        <p:commandButton value="Agregar al carrito" icon="pi pi-shopping-cart" action="#{bean_usuario.engaño()}" ajax="false">
+
+                        </p:commandButton>
+                    </div>
+
+                </div>
+
+            </p:dataGrid>
+        </h:form>
+
+
+        <div id="footer">
+            <div id="Contactos">
+                <p id="Siguenos">Siguenos</p>
+                <h:form id="logosContactos">
+                    <h:panelGrid columns="4" >
+                        <a href=""><i class="fa fa-whatsapp" aria-hidden="true" ></i></a>
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                        <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                    </h:panelGrid>
+                </h:form>
+            </div>
+
+            <div id="conocenos">
+                <h:panelGrid columns="1" >
+                    <ul class="conocenosOpciones"><p class="conocesnoOpcionesPrincipales">Categorias</p>
+                        <li><a href="#">Suplementos</a></li>
+                        <li><a href="#">Ropa deportiva</a></li>
+                        <li><a href="#">Articulos de entrenamiento</a></li>
+                    </ul>
+                </h:panelGrid>
+                <h:panelGrid columns="1" >
+                    <ul class="conocenosOpciones"><p class="conocesnoOpcionesPrincipales">Institucional</p>
+                        <li><a href="#">The thitan gym</a></li>
+                        <li><a href="#">Sauces 6</a></li>
+                        <li><a href="#">Al frente de tu casa sapo lambom</a></li>
+                    </ul>
+                </h:panelGrid>
+                <h:panelGrid columns="1" >
+                    <ul class="conocenosOpciones"><p class="conocesnoOpcionesPrincipales">Politicas</p>
+                        <li><a href="#">Politicas y privacidad</a></li>
+                        <li><a href="#">Leer</a></li>
+                    </ul>
+                </h:panelGrid>
+                <h:panelGrid columns="1" >
+
+                </h:panelGrid>
+            </div>
+
+            <div id="Pagos">
+                <p id="formasPago">Formas de Pago</p>
+                <h:form id="logosPagos">
+                    <h:panelGrid columns="4" >
+                        <i class="fa fa-cc-mastercard" aria-hidden="true"></i> 
+                        <i class="fa fa-cc-visa" aria-hidden="true"></i>
+                        <i class="fa fa-paypal" aria-hidden="true"></i>
+                        <i class="fa fa-usd" aria-hidden="true"></i>
+                        <i class="fa fa-cc-discover" aria-hidden="true"></i>
+                    </h:panelGrid>
+                </h:form>
+            </div>
+            <div id="infFooter">
+                <br/>
+                <hr/>
+                <div>
+                    <img id="logoFooter" src="./img/logo.png"/>
+                </div>
+                <p id="informacion">© 2022,THE TITANS, inc, todos los derechos reservados.<br/>
+                    Universidad de Guayaquil, facultad ingenieria industrial.<br/>
+                    Ecuador,Guayaquil.
+                </p>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    </h:body>
 
 
 

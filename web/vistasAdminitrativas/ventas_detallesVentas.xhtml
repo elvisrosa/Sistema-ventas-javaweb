@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../recursos_css_plantilla/plantillaAdministrativa.xhtml">
+
+            <ui:define name="content">
+                <div class="card">
+                    <h:form id="form">
+                        <p:dataTable var="customer" value="#{bean_ventas.lstListarVentas}" paginator="true" rows="10"
+                                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink}
+                                     {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                                     rowsPerPageTemplate="5,10,15"
+                                     >
+
+                            <p:column headerText="Producto">
+                                <p:graphicImage library="Imagenes_producto"  name="#{customer.producto.nombrefoto}" style="width: 100px; height: 100px;"/>
+                            </p:column>
+
+                           
+                            <p:column headerText="Id del usuario"> <!--filterBy="# {}"-->
+                                <h:outputText value="#{customer.usuario.idusuario}"/>
+                            </p:column>
+
+
+                            <p:column headerText="Cantidad">
+                                <h:outputText value="#{customer.cantidad}"/>
+                            </p:column>
+                            <p:column headerText="Fecha">                          
+                                #{customer.fecha}
+                            </p:column>
+                        </p:dataTable>
+
+
+                        <!--<p:dialog header="Customer Detail" widgetVar="customerDialog" modal="true" showEffect="fade"
+                                  hideEffect="fade" resizable="false">
+                            <p:outputPanel id="customerDetail" style="text-align:center;">
+                                <p:panelGrid columns="2" rendered="# {not empty dtLazyView.selectedCustomer}"
+                                             columnClasses="label,value">
+
+                                    <h:outputText value="Name:"/>
+                                    <h:outputText value="# {dtLazyView.selectedCustomer.name}"/>
+
+                                    <h:outputText value="Country"/>
+                                    <p:column>
+                                        <span class="flag flag-# {dtLazyView.selectedCustomer.country.code}"
+                                              style="width: 30px; height: 20px"/>
+                                        <h:outputText style="vertical-align: middle; margin-left: .5rem"
+                                                      value="# {dtLazyView.selectedCustomer.country.name}"/>
+                                    </p:column>
+
+                                    <h:outputText value="Company:"/>
+                                    <h:outputText value="# {dtLazyView.selectedCustomer.company}"/>
+
+                                    <h:outputText value="Representative:"/>
+                                    <p:column>
+                                        <p:graphicImage name="images/avatar/# {dtLazyView.selectedCustomer.representative.image}"
+                                                        library="demo"
+                                                        width="32" style="vertical-align: middle"/>
+                                        <h:outputText style="vertical-align: middle; margin-left: .5rem"
+                                                      value="# {dtLazyView.selectedCustomer.representative.name}"/>
+                                    </p:column>
+
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:dialog>-->
+                    </h:form>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

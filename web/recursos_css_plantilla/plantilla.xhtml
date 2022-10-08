@@ -22,54 +22,11 @@
 
         <title></title>
 
-        <!-- <f:event type="preRenderView" listener="{plantilla.verificarSesion()}"/>-->
+        <f:event type="preRenderView" listener="#{bean_usuario.verificarSesion()}"/>
 
     </h:head>
 
     <h:body>
-
-        <h:form>
-            <p:dialog header="Modificar Usuario" widgetVar="wdgVar" id="idDialogo">
-                <h:panelGrid columns="2">
-                    <p:outputLabel value="Imagen"/>
-                    <p:inputText/>
-                    <p:commandButton value="Buscar Imagen"/>
-                    <p:column/>
-                    <p:outputLabel value="Nombre y apellido"/>
-                    <p:inputText/>
-
-                    <p:outputLabel value="Correo"/>
-                    <p:inputText/>
-
-                    <p:outputLabel value="Contraseña"/>
-                    <p:inputText/>
-
-                    <p:outputLabel value="Repite la contraseña"/>
-                    <p:inputText placeholder="Repita la contraseña"/>
-                    <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdgVar').hide();"/>
-                    <p:commandButton value="Guardar"/>
-                </h:panelGrid>         
-            </p:dialog>      
-        </h:form>
-
-        <h:form id="gm-cambiar-img">
-            <p:dialog header="Cambiar Imagen" widgetVar="wgbCambiarImagen">
-                <h:panelGrid columns="2">
-                    <p:inputText placeholder="Elige una imagen"/>
-                    <p:commandButton value="Buscar"/>
-                    <p:panel>
-                        <img src="../vistas_proyecto/carnivor.jpg" style="width: 60px; height: 60px;"></img>
-                    </p:panel>
-                    <br></br>
-                    <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wgbCambiarImagen').hide();"/>
-                    <p:commandButton value="Guardar"/>
-                </h:panelGrid>
-            </p:dialog>
-        </h:form>
-
-
-
-
 
 
         <!--Barra de navegacion-->
@@ -82,35 +39,55 @@
                 <p:growl id="messages" showDetail="true" />   
                 <!--<h:form class="bar-buscar-txt"><p:inputText placeholder="Buscar"/></h:form>-->
 
-                <h:form>                      
+                <h:form> 
+
+                    <section class="webdesigntuts-workshop">
+                        <h:form><!--action="" method=""-->		    
+                            <input type="search" placeholder="Busqueda...."/>		    	
+                            <button>Buscar</button>
+                        </h:form>
+                    </section>
+
                     <ul class="bar-lst">
                         <li class="bar.menu-item">
-                            <a href="#"> Opcion 4</a>
+                            <p:commandLink value="Ir al mercado" action="/vistaMercado"/>
                         </li>
 
-                        <li class="bar.menu-item">
-                            <a href="#"> Opcion 4</a>
+                        <li class="bar.menu-item">                          
+                            <p:commandLink action="/carritoCompras" ajax="false">
+                                <i class="fa fa-cart-plus" aria-hidden="true" style="color: greenyellow; font-size: 35px;"></i>
+                            </p:commandLink><span style="color: whitesmoke; font-size: 27px;">(#{bean_carrito.totalRegistroCarrito})</span>
                         </li>
+
 
                         <div class="bar-nombre-usuario">
-                            <span>#{bean_usuario.mostrarPersona()}</span>                       
+                            <span>#{bean_usuario.u.nombre} #{bean_usuario.u.apellido}</span>               
                         </div>
                     </ul>
 
                     <div id="header" >                           
                         <div id="menuPerfil">
                             <ul id="menu">
-                                <li><a href=""><img id="imgPerfil" src="./../img/imgPerfil.png"></img></a>
+                                <li><a href="">
+                                        <h:form enctype="multipart/form-data">
+                                            <p:graphicImage library="Imagenes_usuario" name="#{bean_usuario.u.nombrefoto}" alt="Sin imagen"
+                                                            style="height: 43px; width: 43px; 
+                                                            border-radius: 40%;
+                                                            transform: translateX(40px) translatey(16px);"/>
+                                        </h:form>
+                                    </a>
                                     <ul>
-                                        <li><a class="a1" href=""><img id="iconoPerfil" src="./../img/iconoPerfil.png"></img> Perfil</a></li>
+                                        <li><a class="a1" href=""><img id="iconoPerfil" src="./../img/iconoPerfil.png"></img>
+                                                #{bean_usuario.u.email}</a></li>
                                         <hr></hr>
-                                        <li><a class="a1" href="">Editar Perfil</a></li>
-                                        <li><a class="a1" href="">Cambiar clave</a></li>
-                                        <li><a class="a1" href="">Ajustes</a></li>
+                                        <li><p:commandLink class="a1" value="Editar perfil" action="/editarPerfil"/>
+                                        </li>
+
+                                        <li><p:commandLink class="a1" value="Mis comptas" action="/misCompras"/></li>
                                         <hr></hr>
                                         <li id="liIconoCerrarSesion"><img id="iconoCerrarSesion" src="./../img/iconoCerrarSesion.png"></img>
-                                            <h:commandButton value="Cerra" action="#{bean_usuario.cerrarSesion()}"/>
-                                            </li>
+                                            <p:commandLink class="a1" value="Cerra" actionListener="#{bean_usuario.cerrarSesion()}"/>
+                                        </li>
                                     </ul>  
                                 </li>       
                             </ul>
@@ -136,33 +113,19 @@
                         </p:growl>
 
                         <p:panelMenu>
-                            <p:submenu label="Calculador">
-                                <p:menuitem value="Calcular proteina necesaria" action="/vistas/calculadora" icon="pi pi-refresh"/>
-                                <p:menuitem value="Alimentación" action="#{menuView.update}"  icon="pi pi-refresh" />
-                                <p:menuitem value="Ir pgn principal" action="/vistas/vistaInicio" icon="pi pi-save" />
-
+                            <p:submenu label="Inicio">
+                                <p:menuitem value="Calculadora" action="/calculadora" icon="pi pi-refresh"/>
+                                <p:menuitem value="Ir al mercado"   icon="pi pi-refresh" action="/vistaMercado" />
                             </p:submenu>
                             <p:submenu label="Recomendaciones">
                                 <p:submenu label="Recomendaciones">
-                                    <p:menuitem value="Entrenamiento" action="#{menuView.delete}"  ajax="false" icon="pi pi-times"/>
-                                    <p:menuitem value="Alimentacion" action="#{menuView.delete}"  ajax="false" icon="pi pi-times"/>
-                                    <p:menuitem value="Ejmplos" action="#{menuView.delete}"  ajax="false" icon="pi pi-times"/>
-                                    <p:menuitem value="Ejemplo" action="#{menuView.delete}"  ajax="false" icon="pi pi-times"/>
+                                    <p:menuitem value="Entrenamiento" action="#{menuView.delete}"  icon="pi pi-times"/>
+                                    <p:menuitem value="Alimentacion" action="#{menuView.delete}"  icon="pi pi-times"/>
+                                    <p:menuitem value="Ejmplos" action="#{menuView.delete}"  icon="pi pi-times"/>
 
                                 </p:submenu>       
                             </p:submenu>
                             <p:separator />
-                            <p:submenu label="Navigations" >
-                                <p:submenu label="Links" icon="pi pi-home">
-                                    <p:submenu label="PrimeFaces" icon="pi pi-briefcase">
-                                        <p:menuitem value="Home" url="http://www.primefaces.org" icon="pi pi-home" />
-                                        <p:menuitem value="Docs" url="http://www.primefaces.org/documentation" icon="pi pi-file" />
-                                        <p:menuitem value="Download" url="http://www.primefaces.org/downloads" icon="pi pi-arrow-down" />
-                                        <p:menuitem value="Support" url="http://www.primefaces.org/support" icon="pi pi-briefcase" />
-                                    </p:submenu>
-                                </p:submenu>
-                                <p:menuitem value="Mobile" icon="pi pi-mobile" />
-                            </p:submenu>
                         </p:panelMenu>
                     </h:form>
 
@@ -176,19 +139,6 @@
             </div>
         </div>
 
-        <!--<div id="bottom">
-            <h:form>         
-                <ul>                        
-                    <li style="display: inline;">Usted se ha identificado:</li>
-                    <li><p:commandLink value="Ir pagina principal"/></li>
-                    <li><p:commandLink value="Cerrar sesion" action="{beans.cerrarSesion()}"/></li>
-                    <li style="display: inline;">Todo los derechos reservador por mi EARM</li>      
-                    <a href="#"><li><i class="fa fa-linkedin-square" aria-hidden="true"></i></li></a>   
-                    <a href="#"><li><i class="fa fa-whatsapp" aria-hidden="true"></i></li></a>
-                    <a href="#"><li><i class="fa fa-gitlab" aria-hidden="true"></i></li></a>
-                </ul>
-            </h:form>
-        </div>-->
 
     </h:body>
 

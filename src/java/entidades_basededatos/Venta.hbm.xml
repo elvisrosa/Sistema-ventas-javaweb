@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 31/08/2022 20:07:16 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades_basededatos.Venta" table="venta" schema="public" optimistic-lock="version">
+        <id name="idventa" type="int">
+            <column name="idventa" />
+            <generator class="sequence">
+                <param name="sequence">venta_idventa_seq</param>
+            </generator>
+        </id>
+        <many-to-one name="producto" class="entidades_basededatos.Producto" fetch="select">
+            <column name="productoid" />
+        </many-to-one>
+        <many-to-one name="usuario" class="entidades_basededatos.Usuario" fetch="select">
+            <column name="idusuario" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="date">
+            <column name="fecha" length="13" />
+        </property>
+        <property name="monto" type="java.lang.Double">
+            <column name="monto" precision="17" scale="17" />
+        </property>
+        <property name="cantidad" type="java.lang.Integer">
+            <column name="cantidad" />
+        </property>
+        <set name="detalleventas" table="detalleventa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idventa" />
+            </key>
+            <one-to-many class="entidades_basededatos.Detalleventa" />
+        </set>
+    </class>
+</hibernate-mapping>
